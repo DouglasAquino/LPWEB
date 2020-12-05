@@ -1,0 +1,45 @@
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h2>CADASTRO DE PERGUNTAS</h2>
+      <form #cadastro="ngForm" (submit)="salvar()">
+        <div class="form-group">
+          <label>Pergunta</label><br>
+          <textarea name="pergunta" [(ngModel)]="pergunta" cols="70" rows="3" required></textarea>
+        </div>
+        <span>Indique a alternativa Correta</span><br><br>
+        <div id="inputs">
+          
+        </div><br>
+        <div>
+          <button id="addAlter" type="button" class="btn btn-secondary" (click)="addAlter()">Adicionar alternativa</button> 
+          <button type="submit" class="btn btn-primary" [disabled]="!cadastro.valid">Cadastrar</button>
+          <button type="reset" class="btn btn-danger" (click)="cancelar()">cancelar</button>
+        </div>
+      </form>
+      <br><br>
+      <div>
+    </div>
+  </div>
+  <div class="col-6">
+    <h2>FORMULARIO DE PERGUNTAS</h2><br>
+    <div *ngFor="let item of perguntas">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{item.pergunta}}</h5>
+          <p class="card-text">
+          <div *ngFor="let i of item.respostasErradas"> 
+            <input type="radio" id="rbresp" name="rbresp" (change)="responder(item,'errada')"> {{i}} 
+          </div>
+          <input type="radio" id="rbresp" name="rbresp" (change)="responder(item,'certa')"> {{item.respostaCerta}}
+        </div>
+        <div id='rodape' name="rodape" class="card-footer text-muted">
+          <p id="msg" class="alert alert-secondary">selecione uma opção</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
